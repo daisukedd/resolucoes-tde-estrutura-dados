@@ -1,24 +1,17 @@
-def ordenar_pilha(pilha):
-    pilha_aux = []  # pilha auxiliar
+def sort_stack(stack):
+    aux = []
+    while stack:
+        temp = stack.pop()
+        while aux and aux[-1] > temp:
+            stack.append(aux.pop())
+        aux.append(temp)
+    while aux:
+        stack.append(aux.pop())
+    return stack
 
-    while pilha:  # enquanto a pilha original não estiver vazia
-        tmp = pilha.pop()  # tira o topo da pilha original
 
-        # Move os elementos maiores de pilha_aux de volta para pilha
-        while pilha_aux and pilha_aux[-1] > tmp:
-            pilha.append(pilha_aux.pop())
+stack = [5, 30, 25, 10, 15, 20]
+print("Original:", stack)
 
-        # Coloca o elemento na pilha auxiliar
-        pilha_aux.append(tmp)
-
-    # Move os elementos de volta para pilha (ordenada)
-    while pilha_aux:
-        pilha.append(pilha_aux.pop())
-
-    return pilha
-
-pilha = [5, 30, 25, 10, 15, 20]  
-print("Pilha original:", pilha)
-
-ordenada = ordenar_pilha(pilha)
-print("Pilha ordenada (crescente):", ordenada)
+sorted_stack = sort_stack(stack)
+print("Ordenada:", sorted_stack)
